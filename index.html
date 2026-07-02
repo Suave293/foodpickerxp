@@ -61,7 +61,11 @@
                     "on-secondary-fixed-variant": "#614000",
                     "surface-bright": "#faf9f6",
                     "primary": "#ae2d04",
-                    "on-error": "#ffffff"
+                    "on-error": "#ffffff",
+                    "recipe-accent": "#ae2d04",
+                    "recipe-warm": "#fcaf19",
+                    "recipe-surface": "#fffaf4",
+                    "recipe-text": "#5a413a"
             },
             "borderRadius": {
                     "DEFAULT": "0.25rem",
@@ -253,9 +257,15 @@
 </div>
 </div>
 </main>
-<button class="recipe-fab" id="recipeFab" type="button" aria-haspopup="dialog" aria-controls="recipeModal" aria-expanded="false">
-<span class="material-symbols-outlined">menu_book</span>
-<span>Jollof Recipe</span>
+<button class="recipe-fab bg-recipe-accent text-recipe-surface" id="recipeFab" type="button" aria-haspopup="dialog" aria-controls="recipeModal" aria-expanded="false">
+<span class="recipe-icon">
+<span class="material-symbols-outlined">notifications_active</span>
+</span>
+<span class="recipe-fab-text">
+<span class="recipe-fab-title">Jollof recipe</span>
+<span class="recipe-fab-subtitle">Tap to view</span>
+</span>
+<span class="recipe-badge">New</span>
 </button>
 <div class="recipe-modal" id="recipeModal" role="dialog" aria-modal="true" aria-labelledby="recipeModalTitle" aria-hidden="true">
 <div class="recipe-card">
@@ -427,9 +437,4 @@
         if (event.key === 'Escape') closeRecipeModalFn();
     });
 
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            openRecipeModal();
-        }, 700);
-    });
 </script></body></html>

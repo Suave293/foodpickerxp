@@ -49,7 +49,11 @@ tailwind.config = {
                 "on-secondary-fixed-variant": "#614000",
                 "surface-bright": "#faf9f6",
                 "primary": "#ae2d04",
-                "on-error": "#ffffff"
+                "on-error": "#ffffff",
+                "recipe-accent": "#ae2d04",
+                "recipe-warm": "#fcaf19",
+                "recipe-surface": "#fffaf4",
+                "recipe-text": "#5a413a"
             },
             "borderRadius": {
                 "DEFAULT": "0.25rem",

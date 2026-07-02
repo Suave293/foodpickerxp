@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Kelly Delicacies - Spin &amp; Win</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Be+Vietnam+Pro:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "primary-container": "#d1451e",
+                    "on-secondary-fixed": "#281800",
+                    "background": "#faf9f6",
+                    "secondary": "#805600",
+                    "surface-container-high": "#e9e8e5",
+                    "tertiary-fixed": "#c6ebd9",
+                    "tertiary-container": "#5b7d6e",
+                    "on-surface": "#1a1c1a",
+                    "outline-variant": "#e2bfb6",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#efeeeb",
+                    "on-tertiary-fixed": "#002116",
+                    "secondary-fixed": "#ffddb0",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#fcaf19",
+                    "surface-variant": "#e3e2e0",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f1ee",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#fffeff",
+                    "on-secondary-container": "#694600",
+                    "surface-container-low": "#f4f3f1",
+                    "tertiary-fixed-dim": "#aacfbd",
+                    "surface-container-highest": "#e3e2e0",
+                    "on-primary-fixed-variant": "#881f00",
+                    "secondary-fixed-dim": "#ffba45",
+                    "on-background": "#1a1c1a",
+                    "on-primary-fixed": "#3c0800",
+                    "primary-fixed-dim": "#ffb5a1",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#b02e05",
+                    "surface-dim": "#dbdad7",
+                    "on-tertiary-fixed-variant": "#2c4d40",
+                    "inverse-surface": "#2f312f",
+                    "primary-fixed": "#ffdbd1",
+                    "tertiary": "#436456",
+                    "on-surface-variant": "#5a413a",
+                    "on-tertiary-container": "#fefffc",
+                    "inverse-primary": "#ffb5a1",
+                    "surface": "#faf9f6",
+                    "outline": "#8e7069",
+                    "on-secondary-fixed-variant": "#614000",
+                    "surface-bright": "#faf9f6",
+                    "primary": "#ae2d04",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin": "32px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Be Vietnam Pro"],
+                    "headline-lg": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Be Vietnam Pro"],
+                    "label-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .wheel-container {
+            perspective: 1000px;
+        }
+        #wheel {
+            transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+            transform-origin: center center;
+        }
+        .wheel-segment {
+            clip-path: polygon(50% 50%, 0 0, 100% 0);
+            transform-origin: 50% 50%;
+        }
+        @keyframes bounce-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse-btn {
+            animation: bounce-scale 2s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background border-b border-outline-variant px-margin py-4">
+<div class="flex justify-between items-center w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="restaurant">restaurant</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Kelly Delicacies</h1>
+</div>
+<button class="relative hover:bg-surface-container-low transition-colors p-2 rounded-full Active: scale-95 duration-150">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold px-1.5 py-0.5 rounded-full">2</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-32 flex flex-col items-center px-4">
+<!-- Instructional Header -->
+<div class="text-center mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Can't decide what to eat?</h2>
+<p class="text-on-surface-variant font-body-md">Spin the wheel and let fate choose your delicious meal!</p>
+</div>
+<!-- Wheel Section -->
+<div class="relative w-full max-w-[380px] aspect-square wheel-container scale-95 opacity-80 mb-6">
+<!-- Pointer Arrow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 z-20">
+<div class="w-8 h-10 bg-primary flex items-end justify-center rounded-b-full shadow-lg" style="clip-path: polygon(0% 0%, 100% 0%, 50% 100%);"></div>
+</div>
+<!-- The Wheel -->
+<div class="w-full h-full rounded-full border-[6px] border-primary-container shadow-2xl overflow-hidden bg-white relative" id="wheel">
+<!-- Segments will be rendered via JS for 8 options -->
+<div class="absolute inset-0" id="segments-layer"></div>
+<!-- Center Pin -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full shadow-lg z-10 flex items-center justify-center border-4 border-primary">
+<span class="material-symbols-outlined text-primary text-3xl font-bold" data-icon="restaurant_menu">restaurant_menu</span>
+</div>
+</div>
+</div>
+<!-- Spin Button -->
+<button class="pulse-btn bg-primary text-on-primary font-headline-md text-headline-md px-12 py-4 rounded-full shadow-xl hover:bg-primary-container active:scale-90 transition-all duration-200" id="spinBtn">
+            SPIN THE WHEEL
+        </button><button class="mt-6 flex items-center gap-2 text-primary font-bold hover:bg-surface-container-low px-6 py-2 rounded-full transition-colors" id="editItemsBtn">
+<span class="material-symbols-outlined">edit</span>
+<span class="font-headline-md text-lg">Edit Items</span>
+</button><div class="w-full max-w-sm mt-8 px-4">
+<div class="relative mb-6">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary text-on-surface font-body-md" placeholder="Search for food..." type="text"/>
+</div>
+<div class="mb-8 bg-surface-container-low rounded-3xl overflow-hidden border border-outline-variant shadow-lg transition-all ring-4 ring-primary/20 shadow-2xl">
+<div class="w-full overflow-hidden h-80">
+<img alt="Banku &amp; Tilapia" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoBpX1zT0EaX0o5WCwvGI0JKGvfNMpu6x-NaOQUjnotp5oyE5IE7c-GfLhJ-dJh-9cPUmSY4an4VsE5Wk-qB-IbG_q3I1g7jGMFBXRgzDz-vdjakny9r630RE6xMjWJggAh2XeqAyFof3PMmrdfrJqt79_kS-ksu50IaouTV2W3aeYsausBu_cr5LfrKelPeyXhAURVuerQCG4TBBBT8LkyVLT2iCyDq2YhFcgkFqFUwN-38nLIcbTLvmiETc0rwAdYd_2bdJmA2s"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-label-sm text-label-sm text-primary uppercase tracking-wider mb-1">Selected Item</h4>
+<h3 class="font-headline-md text-headline-md text-on-surface">Banku &amp; Tilapia</h3>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm">Popular</span>
+</div>
+<p class="text-on-surface-variant font-body-md mb-6">Traditional Ghanaian Banku served with grilled tilapia, spicy pepper sauce, and fresh garnishes.</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold hover:bg-primary-container active:scale-95 transition-all flex items-center justify-center gap-2 py-4 text-lg uppercase tracking-wide">
+<span class="material-symbols-outlined">add_circle</span>
+      Confirm &amp; Add to Wheel
+    </button>
+</div>
+</div><div class="space-y-4">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Suggested Foods</h3>
+<div class="flex flex-wrap gap-2">
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full">
+<span class="font-body-md text-on-surface">Kenkey</span>
+<button class="text-primary flex items-center justify-center hover:bg-primary/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full">
+<span class="font-body-md text-on-surface">Banku &amp; Tilapia</span>
+<button class="text-primary flex items-center justify-center hover:bg-primary/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full">
+<span class="font-body-md text-on-surface">Acheke</span>
+<button class="text-primary flex items-center justify-center hover:bg-primary/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full">
+<span class="font-body-md text-on-surface">Burger</span>
+<button class="text-primary flex items-center justify-center hover:bg-primary/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full">
+<span class="font-body-md text-on-surface">Pie</span>
+<button class="text-primary flex items-center justify-center hover:bg-primary/10 rounded-full p-0.5">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Modal -->
+<div class="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300" id="editModal">
+<div class="bg-surface-container-lowest w-full max-w-md rounded-t-3xl p-6 transform translate-y-full transition-transform duration-300" id="editModalContent">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Wheel Items</h3>
+<button class="p-2 hover:bg-surface-container-low rounded-full" onclick="document.getElementById('editModal').classList.add('opacity-0', 'pointer-events-none'); document.getElementById('editModalContent').classList.add('translate-y-full');">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-3 mb-6 max-h-[40vh] overflow-y-auto" id="itemsList"><div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="font-body-md">Kenkey</span><button class="text-error p-1"><span class="material-symbols-outlined">delete</span></button></div><div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="font-body-md">Banku &amp; Tilapia</span><button class="text-error p-1"><span class="material-symbols-outlined">delete</span></button></div><div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="font-body-md">Acheke</span><button class="text-error p-1"><span class="material-symbols-outlined">delete</span></button></div><div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="font-body-md">Burger</span><button class="text-error p-1"><span class="material-symbols-outlined">delete</span></button></div><div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl"><span class="font-body-md">Pie</span><button class="text-error p-1"><span class="material-symbols-outlined">delete</span></button></div></div>
+<div class="flex gap-2">
+<input class="flex-grow border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:border-primary" placeholder="Add new meal..." type="text"/>
+<button class="bg-primary text-on-primary p-3 rounded-xl">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div><div class="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300" id="resultModal">
+<div class="bg-surface-container-lowest p-8 rounded-3xl max-w-sm w-full shadow-2xl text-center transform scale-90 transition-transform duration-300" id="modalContent">
+<div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-secondary-container shadow-lg">
+<img alt="Selected Meal" class="w-full h-full object-cover" id="resultImage" src="https://lh3.googleusercontent.com/aida/AP1WRLtT5rcTH2wYUH3zNYkU9iQ5RPdxZl51LHp3jKg05JPtpclva3s-PbB8XMR6whxlwF9R1l2pMrUaA-QGDi-1aXg2IUo6sY9PL-tSuEnuUUMQ_efBOPEUd08c47F2WcpQUDstMdyCFG5UaCFw7AaK-Z73CIUgO09hERtTf0UEBjIyyA2DqdvF95csuuhzKastzI2j7hki-zll_DbC5yKevhIGJFWbeWmSWOx8xXI56w9YyFkWFvylMgMGIW8"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Congratulations! 🎉</h3>
+<p class="text-on-surface-variant font-body-lg mb-8" id="resultText">You won Banku &amp; Tilapia!</p>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all" onclick="closeModal()">Add to Cart</button>
+<button class="w-full border border-outline text-primary py-3 rounded-xl font-bold hover:bg-surface-container-low active:scale-95 transition-all" onclick="closeModal()">Spin Again</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container flex justify-around items-center px-4 py-3 pb-safe shadow-lg">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all Active: scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 Active: scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="cached">cached</span>
+<span class="font-label-sm text-label-sm">Spin &amp; Win</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all Active: scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-sm text-label-sm">Menu</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all Active: scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</button>
+</nav>
+<script>
+        const meals = [
+            { name: "Jollof Rice with Chicken", color: "#ae2d04", prompt: "A close-up high-resolution photo of vibrant orange-red African Jollof rice served with a perfectly grilled piece of chicken leg and spicy plantains. The dish is presented on a modern ceramic plate in a bright kitchen setting. Warm lighting highlights the textures of the rice grains and the charred skin of the chicken. Professional culinary photography style." },
+            { name: "Fried Rice with Wings", color: "#fcaf19", prompt: "High-fidelity top-down view of golden vegetable fried rice with crispy seasoned chicken wings on a white plate. Bright natural window light illuminates the steam rising from the dish. The background is a clean rustic table. Vivid colors and appetizing textures, commercial food photography." },
+            { name: "Assorted Noodles", color: "#ae2d04", prompt: "A bowl of glistening, dark saucy stir-fried noodles packed with colorful bell peppers, succulent shrimp, and chunks of beef. Garnished with spring onions in an elegant dark bowl. Atmospheric low-key lighting focused on the shimmer of the sauce. Gourmet food presentation style." },
+            { name: "Banku with Tilapia", color: "#fcaf19", prompt: "Authentic Ghanaian Banku served with a large grilled tilapia fish garnished with fresh diced tomatoes, onions, and spicy green pepper sauce. The setting is warm and inviting, showcasing a traditional communal meal. Soft morning light, rich deep colors of the peppers and perfectly charred fish skin." },
+            { name: "Yam Chips & Gizzard", color: "#ae2d04", prompt: "Crispy thick-cut yam chips served alongside spicy sautéed gizzards in a rich tomato and onion gravy. Placed in a tactile wooden bowl on a marble surface. Bright high-key lighting emphasizing the crunch of the chips and the glossy sauce of the gizzards. Vibrant modern culinary aesthetic." },
+            { name: "Waakye Special", color: "#fcaf19", prompt: "Classic Ghanaian Waakye rice and beans served in a green leaf with wele, spaghetti, and hard-boiled egg. Topped with dark shito sauce. Authentic presentation with rich earthy tones and vibrant food textures. Dramatic lighting focusing on the contrast between the dark shito and colorful garnishes." },
+            { name: "Fufu and Light Soup", color: "#ae2d04", prompt: "A smooth mound of white fufu submerged in a rich, red light soup with tender goat meat and vegetables. Served in a traditional earthenware bowl. Warm, homey lighting creating a sense of comfort and tradition. Deep reds and creamy whites, professional food portraiture." },
+            { name: "Grilled Pork with Kenkey", color: "#fcaf19", prompt: "Smoky grilled pork chops sliced and served with soft Kenkey and fresh pepper sauce. The pork has beautiful grill marks and is glistening with flavor. The setting is a casual outdoor eatery at sunset, with warm golden hour light hitting the meal. Vibrant, craveable street food style." }
+        ];
+
+        const wheel = document.getElementById('wheel');
+        const segmentsLayer = document.getElementById('segments-layer');
+        const spinBtn = document.getElementById('spinBtn');
+        const resultModal = document.getElementById('resultModal');
+        const modalContent = document.getElementById('modalContent');
+        const resultText = document.getElementById('resultText');
+        const resultImage = document.getElementById('resultImage');
+
+        let currentRotation = 0;
+        let isSpinning = false;
+
+        function createWheel() {
+            meals.forEach((meal, i) => {
+                const segment = document.createElement('div');
+                segment.className = 'absolute inset-0 wheel-segment';
+                segment.style.backgroundColor = i % 2 === 0 ? '#ffffff' : '#faf9f6';
+                segment.style.transform = `rotate(${i * 45}deg)`;
+                
+                const content = document.createElement('div');
+                content.className = 'absolute top-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2';
+                content.style.transform = `rotate(22.5deg)`;
+                
+                const icon = document.createElement('span');
+                icon.className = 'material-symbols-outlined text-primary text-3xl';
+                icon.innerHTML = 'lunch_dining';
+                
+                const label = document.createElement('span');
+                label.className = 'text-[10px] font-bold text-center w-24 text-primary uppercase tracking-tight';
+                label.innerText = meal.name.split(' ')[0];
+
+                content.appendChild(icon);
+                content.appendChild(label);
+                segment.appendChild(content);
+                segmentsLayer.appendChild(segment);
+            });
+        }
+
+        function spin() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinBtn.classList.remove('pulse-btn');
+            
+            const extraSpins = 5 + Math.random() * 5; // 5 to 10 full spins
+            const randomDegrees = Math.floor(Math.random() * 360);
+            currentRotation += (extraSpins * 360) + randomDegrees;
+            
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                const normalizedRotation = (360 - (currentRotation % 360)) % 360;
+                // Offset by 22.5 to account for segment center
+                const winnerIndex = Math.floor(((normalizedRotation + 22.5) % 360) / 45);
+                showResult(meals[winnerIndex]);
+                isSpinning = false;
+                spinBtn.classList.add('pulse-btn');
+            }, 4000);
+        }
+
+        function showResult(meal) {
+            resultText.innerText = `You got ${meal.name}!`;
+            resultImage.src = `https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop`; // Fallback image for demo
+            resultImage.setAttribute('data-alt', meal.prompt);
+            
+            resultModal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-90');
+            modalContent.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            resultModal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+        }
+
+        spinBtn.addEventListener('click', spin);
+        createWheel();
+    </script>
+<script>
+    document.getElementById('editItemsBtn').addEventListener('click', () => {
+        const modal = document.getElementById('editModal');
+        const content = document.getElementById('editModalContent');
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        content.classList.remove('translate-y-full');
+    });
+</script></body></html>

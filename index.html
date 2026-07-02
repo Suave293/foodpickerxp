@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Be+Vietnam+Pro:wght@600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -252,6 +253,38 @@
 </div>
 </div>
 </main>
+<button class="recipe-fab" id="recipeFab" type="button" aria-haspopup="dialog" aria-controls="recipeModal" aria-expanded="false">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Jollof Recipe</span>
+</button>
+<div class="recipe-modal" id="recipeModal" role="dialog" aria-modal="true" aria-labelledby="recipeModalTitle" aria-hidden="true">
+<div class="recipe-card">
+<button class="recipe-close" id="closeRecipeModal" type="button" aria-label="Close recipe card">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="recipe-head">
+<p class="recipe-tag">Quick guide</p>
+<h3 id="recipeModalTitle">How to Make Jollof Rice</h3>
+</div>
+<ul class="recipe-ingredients">
+<li>2 cups long-grain rice</li>
+<li>3 medium tomatoes</li>
+<li>2 red bell peppers</li>
+<li>1 onion</li>
+<li>2 Scotch bonnet peppers</li>
+<li>1 cup chicken stock</li>
+<li>3 tbsp vegetable oil</li>
+<li>Salt, curry powder, thyme, and seasoning cubes</li>
+</ul>
+<ol class="recipe-steps">
+<li>Blend the tomatoes, peppers, onion, and Scotch bonnet into a smooth mix.</li>
+<li>Fry the blended sauce in hot oil until the water evaporates and the flavor deepens.</li>
+<li>Add curry powder, thyme, seasoning, and salt, then stir well.</li>
+<li>Add the rice and stock, cover, and cook until tender and fragrant.</li>
+<li>Serve hot with chicken, plantains, or salad for a complete meal.</li>
+</ol>
+</div>
+</div>
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container flex justify-around items-center px-4 py-3 pb-safe shadow-lg">
 <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all Active: scale-90 duration-200">
@@ -367,5 +400,36 @@
         const content = document.getElementById('editModalContent');
         modal.classList.remove('opacity-0', 'pointer-events-none');
         content.classList.remove('translate-y-full');
+    });
+
+    const recipeFab = document.getElementById('recipeFab');
+    const recipeModal = document.getElementById('recipeModal');
+    const closeRecipeModal = document.getElementById('closeRecipeModal');
+
+    function openRecipeModal() {
+        recipeModal.classList.add('is-open');
+        recipeModal.setAttribute('aria-hidden', 'false');
+        recipeFab.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeRecipeModalFn() {
+        recipeModal.classList.remove('is-open');
+        recipeModal.setAttribute('aria-hidden', 'true');
+        recipeFab.setAttribute('aria-expanded', 'false');
+    }
+
+    recipeFab.addEventListener('click', openRecipeModal);
+    closeRecipeModal.addEventListener('click', closeRecipeModalFn);
+    recipeModal.addEventListener('click', (event) => {
+        if (event.target === recipeModal) closeRecipeModalFn();
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeRecipeModalFn();
+    });
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            openRecipeModal();
+        }, 700);
     });
 </script></body></html>
